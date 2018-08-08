@@ -282,8 +282,60 @@ public class DemoRestController {
 	
 	
 	
-	//===========================================================================================================================================
+	//======================================================LOGIN USER=====================================================================================
+	@PostMapping("/login")
+	public LoginResponse loginTheUser(@RequestBody LoginUser user) {		
+		
+		String passwordToMatch=null;
+		boolean exist=false;
+		
+		
+		List<UserPersonalDetails> usersList;
+		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(UserPersonalDetails.class).buildSessionFactory();
+
+			System.out.println("Factory created");
+		Session session=factory.openSession();
+		System.out.println("Session Opened");
 	
+	try {
+		session.beginTransaction();
+		usersList=session.createQuery("from UserPersonalDetails u where u.email='"+user.getEmail()+"'").getResultList(); //Write Class Name and Property name in query
+		exist=(!usersList.isEmpty());
+		session.getTransaction().commit();
+	}
+	finally {
+		factory.close();
+	}
+	
+	
+	System.out.println("EXIST:"+exist);
+	if(!exist) {
+		LoginResponse loginResponse = new LoginResponse(user.getEmail(), false, "Invalid Email!");
+		return loginResponse;
+	}
+	
+	for(UserPersonalDetails upd:usersList) {
+		passwordToMatch=upd.getPassword();
+	}
+	if(passwordToMatch.equals(user.getPassword()))
+	{
+		LoginResponse loginResponse = new LoginResponse(user.getEmail(), true,"Logged in successfully, redirect to dashboard.");
+		return loginResponse;
+	}
+	
+	LoginResponse loginResponse = new LoginResponse(user.getEmail(), false, "Invalid Password!");
+	
+	
+
+return loginResponse;
+}	
+	
+	
+	
+	
+	//-----------------------------------------------------------------------------------------------------------------------------------------------
+	//------------------------------------------------------------------------------------------------------------------------------------------------
+	//
 	
 	
 	
