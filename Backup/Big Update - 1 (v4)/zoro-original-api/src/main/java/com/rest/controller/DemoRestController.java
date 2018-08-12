@@ -4,7 +4,8 @@ package com.rest.controller;
 import java.io.IOException;
 import java.util.List;
 import org.json.JSONObject;
-
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -336,13 +337,75 @@ return loginResponse;
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------------------------------------------------------
 	//
+//	//
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+//	
+	//-------------------------------------------------------SEND USER DETAILS TO DASHBOARD-----------------------------------------------------------
+	//=================================================================================================================================================
 	
 	
+	@GetMapping("/getUserDetails/{user_email}")
+	public org.json.simple.JSONObject sendUserDetailsAsJson(@PathVariable String user_email) {
+		
+		boolean exist = false;
+		org.json.simple.JSONObject responseDetails=null;
+		List<UserPersonalDetails> usersList;
+		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(UserPersonalDetails.class).buildSessionFactory();
+
+			System.out.println("Factory created");
+		Session session=factory.openSession();
+		System.out.println("Session Opened");
+	
+	try {
+		session.beginTransaction();
+		usersList=session.createQuery("from UserPersonalDetails u where u.email='"+user_email+"'").getResultList(); //Write Class Name and Property name in query
+		exist=(!usersList.isEmpty());
+		session.getTransaction().commit();
+	}
+	finally {
+		factory.close();
+	}
 	
 	
+	System.out.println("EXIST:"+exist);
+	if(exist){//list is not empty
+		for(UserPersonalDetails temp:usersList) {
+			String jsonDetailsString = temp.getDetailsJson();
+			JSONParser jParser = new JSONParser(); //user json-simple version "1.1" in pom.xml ("1.1.1" will show server error)
+			try {
+				responseDetails = (org.json.simple.JSONObject) jParser.parse(jsonDetailsString);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 	
 	
+return responseDetails;
+		
+	}
 	
+	//=============================================================================================================================================
+	//===================================================================================================================================================
 	
 	
 	

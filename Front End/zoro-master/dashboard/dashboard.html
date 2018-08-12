@@ -1,0 +1,128 @@
+<!--<div ng-repeat="item in items track by $index" ng-if="$index%3==0">
+  <div>{{items[$index].name}}</div>
+  <div>{{items[$index+1].name}}</div>
+  <div>{{items[$index+2].name}}</div>
+</div>
+-->
+<div class="sidenav">
+  <a href="#about">About</a>
+    <a href="#services">Services</a>
+ITEMS
+
+</div>
+
+<div class="main" id="element-container">
+<div ng-repeat="item in items track by $index" ng-if="$index%3==0" class="row">
+
+  <div class="col-sm-4" >
+    <!-- Product -->
+    <div class="shop-item">
+      <!-- Product Image -->
+      <div class="image">
+        <a href="page-product-details.html"><img src="/img/product1.jpg" alt="Item Name"></a>
+      </div>
+      <!-- Product Title -->
+      <div class="title">
+        <h3><a href="page-product-details.html">{{items[$index].title}}</a></h3>
+      </div>
+      <!-- Product Available Colors-->
+      <div class="colors">
+        <span class="color-white"></span>
+        <span class="color-black"></span>
+        <span class="color-blue"></span>
+        <span class="color-orange"></span>
+        <span class="color-green"></span>
+      </div>
+      <!-- Product Price-->
+      <div class="price">
+        <span class="price-was">$959.99</span> $999.99
+      </div>
+      <!-- Product Description-->
+      <div class="description">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis, nulla id pretium malesuada, dui est laoreet risus, ac rhoncus eros diam id odio.</p>
+      </div>
+      <!-- Add to Cart Button -->
+      <div class="actions">
+        <a href="page-product-details.html" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+      </div>
+    </div>
+    <!-- End Product -->
+  </div>
+
+
+
+<div class="col-sm-4" >
+  <!-- Product -->
+  <div class="shop-item">
+    <!-- Product Image -->
+    <div class="image">
+      <a href="page-product-details.html"><img src="/img/product1.jpg" alt="Item Name"></a>
+    </div>
+    <!-- Product Title -->
+    <div class="title">
+      <h3><a href="page-product-details.html">{{items[$index+1].title}}</a></h3>
+    </div>
+    <!-- Product Available Colors-->
+    <div class="colors">
+      <span class="color-white"></span>
+      <span class="color-black"></span>
+      <span class="color-blue"></span>
+      <span class="color-orange"></span>
+      <span class="color-green"></span>
+    </div>
+    <!-- Product Price-->
+    <div class="price">
+      <span class="price-was">$959.99</span> $999.99
+    </div>
+    <!-- Product Description-->
+    <div class="description">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis, nulla id pretium malesuada, dui est laoreet risus, ac rhoncus eros diam id odio.</p>
+    </div>
+    <!-- Add to Cart Button -->
+    <div class="actions">
+      <a href="page-product-details.html" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+    </div>
+  </div>
+  <!-- End Product -->
+</div>
+
+
+<div class="col-sm-4" >
+  <!-- Product -->
+  <div class="shop-item">
+    <!-- Product Image -->
+    <div class="image">
+      <a href="page-product-details.html"><img src="/img/product1.jpg" alt="Item Name"></a>
+    </div>
+    <!-- Product Title -->
+    <div class="title">
+      <h3><a href="page-product-details.html">{{items[$index+2].title}}</a></h3>
+    </div>
+    <!-- Product Available Colors-->
+    <div class="colors">
+      <span class="color-white"></span>
+      <span class="color-black"></span>
+      <span class="color-blue"></span>
+      <span class="color-orange"></span>
+      <span class="color-green"></span>
+    </div>
+    <!-- Product Price-->
+    <div class="price">
+      <span class="price-was">$959.99</span> $999.99
+    </div>
+    <!-- Product Description-->
+    <div class="description">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis, nulla id pretium malesuada, dui est laoreet risus, ac rhoncus eros diam id odio.</p>
+    </div>
+    <!-- Add to Cart Button -->
+    <div class="actions">
+      <a href="page-product-details.html" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+    </div>
+  </div>
+  <!-- End Product -->
+</div>
+
+</div>
+
+
+</div>
