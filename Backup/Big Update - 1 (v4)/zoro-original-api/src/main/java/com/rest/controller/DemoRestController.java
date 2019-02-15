@@ -57,7 +57,7 @@ public class DemoRestController {
 	//
 	//
 	//
-	//CHECKING EXISTING EMAIL AND SENDING OTP IF EMAIL NOT EXISTS, ALSO SAVEING OTP TO DATABASE
+	//CHECKING EXISTING EMAIL AND SENDING OTP IF EMAIL NOT EXISTS, ALSO SAVING OTP TO DATABASE
 	//-----------------------------------------------------------------------------------------------------------------------------------------------
 	//------------------------------------------------------------------------------------------------------------------------------------------------
 	
@@ -144,18 +144,31 @@ public class DemoRestController {
 	
 	//creating session object to get current session
 		Session session=factory.openSession();
-	
+		
+		List<UserPersonalDetails> usersList;
+		
+		try {
+			session.beginTransaction();
+			usersList=session.createQuery("from UserPersonalDetails u where u.email='"+detailsJson.getEmail()+"'").getResultList(); //Write Class Name and Property name in query
+		
+			session.getTransaction().commit();
+		}
+		finally {}
+		
+		
+		
+		
 	try {
 	//create Annotated class POJO
 		email=detailsJson.getEmail();
-		String password=detailsJson.getPassword();
 		
 		JSONObject jsonDetails = new JSONObject(detailsJson);
 		String jsonString=jsonDetails.toString();
 		
 		System.out.println(jsonString);
 		
-		UserPersonalDetails upd = new UserPersonalDetails(email,password,jsonString);
+		UserPersonalDetails upd = new UserPersonalDetails(email,jsonString);
+	
 		
 	//start a transaction
 		session.beginTransaction();
@@ -195,7 +208,7 @@ public class DemoRestController {
 	}
 				
 		
-		RegistrationResponse registerResponse = new RegistrationResponse(responseEmail, true, "Redirect to Login Page");
+		RegistrationResponse registerResponse = new RegistrationResponse(responseEmail, true, "details saved");
 		return registerResponse;
 	}
 	
@@ -279,10 +292,75 @@ public class DemoRestController {
 	
 	
 	
+	//==================================NEW VERIFIED USER (MENTION IT IN CREDENTIALS TABLE)============================++++++++++++===============
+	
+	@PostMapping("/registerCredentials")
+	public RegistrationResponse newUserCredentials(@RequestBody Credentials cred) throws JsonParseException, JsonMappingException, IOException {		
+		System.out.println("DONE!");
+		String email=cred.getEmail();
+		String password=cred.getPassword();
+		System.out.println("DONE!");
+		
+		
+		System.out.println("Starting to read hibernate config...");
+		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Credentials.class).buildSessionFactory();
+		 
+			System.out.println("DONE!");
+	
+	
+	//creating session object to get current session
+		Session session=factory.openSession();
+		
+		
+		
+		
+	try {
+	//create Annotated class POJO
+		
+		
+		System.out.println("////////////========================////////////////"+cred.getEmail());
+		
+		Credentials saveThisCred = new Credentials(email,password);
+	
+		
+	//start a transaction
+		session.beginTransaction();
+		
+	//save the POJO
+		session.save(saveThisCred);
+	//commit transaction    
+	        
+				
+		
+		
+		session.getTransaction().commit();
+	}
+	finally {
+		//close the session factory
+		factory.close();
+	}
+				
+		
+		RegistrationResponse registerResponse = new RegistrationResponse(cred.getEmail(), true, "registration done, redirect to login page");
+		return registerResponse;
+	}
 	
 	
 	
-	
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//	
 	//======================================================LOGIN USER=====================================================================================
 	@PostMapping("/login")
 	public LoginResponse loginTheUser(@RequestBody LoginUser user) {		
@@ -291,8 +369,8 @@ public class DemoRestController {
 		boolean exist=false;
 		
 		
-		List<UserPersonalDetails> usersList;
-		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(UserPersonalDetails.class).buildSessionFactory();
+		List<Credentials> credentials;
+		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(Credentials.class).buildSessionFactory();
 
 			System.out.println("Factory created");
 		Session session=factory.openSession();
@@ -300,8 +378,8 @@ public class DemoRestController {
 	
 	try {
 		session.beginTransaction();
-		usersList=session.createQuery("from UserPersonalDetails u where u.email='"+user.getEmail()+"'").getResultList(); //Write Class Name and Property name in query
-		exist=(!usersList.isEmpty());
+		credentials=session.createQuery("from Credentials u where u.email='"+user.getEmail()+"'").getResultList(); //Write Class Name and Property name in query
+		exist=(!credentials.isEmpty());
 		session.getTransaction().commit();
 	}
 	finally {
@@ -315,8 +393,8 @@ public class DemoRestController {
 		return loginResponse;
 	}
 	
-	for(UserPersonalDetails upd:usersList) {
-		passwordToMatch=upd.getPassword();
+	for(Credentials cred:credentials) {
+		passwordToMatch=cred.getPassword();
 	}
 	if(passwordToMatch.equals(user.getPassword()))
 	{

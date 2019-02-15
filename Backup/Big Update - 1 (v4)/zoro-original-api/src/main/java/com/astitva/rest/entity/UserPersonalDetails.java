@@ -19,21 +19,12 @@ public class UserPersonalDetails {
 	@Column(name="email")
 	private String email;
 	
-	@Column(name="pswd")
-	private String password;
-	
 	@Column(name="details_json")
 	private String detailsJson;	
 	
 	
 	
 	
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -54,9 +45,8 @@ public class UserPersonalDetails {
 	}
 	
 	
-	public UserPersonalDetails(String email, String password, String detailsJson) {
+	public UserPersonalDetails(String email, String detailsJson) {
 		this.email = email.trim();
-		this.password = password;
 		this.detailsJson = detailsJson;
 	}
 	public UserPersonalDetails() {

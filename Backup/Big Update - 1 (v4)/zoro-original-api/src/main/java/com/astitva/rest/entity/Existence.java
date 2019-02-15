@@ -21,7 +21,6 @@ public class Existence {
 		this.found = found;
 	}
 	public Existence() {
-	}
-	
+	}	
 
 }

@@ -1,3 +1,4 @@
+var user_email;
 $(document).ready(function() {
 	setTimeout(function() {
 		$("#main").removeClass("is-loading");
@@ -39,19 +40,26 @@ var regex_otp = new RegExp('[a-zA-Z0-9]{6}');
 $("#text").on("click",function(){
 	if($("#text").text()=="Verify")
 	{
-		console.log("Verifed");
-		$.getJSON("otp-verify-url", function(result){
-		
+		console.log("Verifed"+user_email+"otp:::"+$(".email-input").val());
+		var data = {
+			"email":user_email,
+			"otp": $(".email-input").val()
+		}
+	
+		//$.getJSON("otp-verify-url", function(result){
+		$.post("http://localhost:7070/spring-rest-demo/zoroapi/verifyotp",data,function(res){
+		console.log("verified-------?");
+		console.log(res);
+		})
 		//HOW TO SEND JSON OBJECT VIA POST REQUEST TO API?
 		
-			window.location="index-1.html/register";
-		});
+		//	window.location="index-1.html/register";
 	}
 	else{
 	
 	if($(".email").hasClass("success")){
 		//call the api with email
-		var user_email=$('.email input').val();
+		user_email=$('.email input').val();
 		console.log(user_email);
 //Here call the api with email->		 
 		$.getJSON("http://localhost:7070/spring-rest-demo/zoroapi/checkexistence/"+user_email+"/", function(result){	

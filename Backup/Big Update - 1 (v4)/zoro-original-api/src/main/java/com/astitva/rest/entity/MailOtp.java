@@ -15,7 +15,7 @@ public class MailOtp {
 
 public String mailOtpNow(String destinationEmail) {
 	final String fromEmail = "zoro.junas@gmail.com"; //requires valid gmail id
-	final String password = "$junasZORO"; // correct password for gmail id
+	final String password = "junas@ZORO"; // correct password for gmail id
 	final String toEmail = destinationEmail; // can be any email id 
 	
 	System.out.println("SSLEmail Start");

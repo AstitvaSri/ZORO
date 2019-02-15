@@ -3,21 +3,20 @@ package com.astitva.rest.entity;
 
 public class DetailsJson {
 	private String email;
-	private String password;
 	private String firstName;
 	private String lastName;
 	private String gender;
 	private int age;
-	private String aadharID;
 	private String city;
 	private String state;
+	private String phone;
 	
 	
-	public String getPassword() {
-		return password;
+	public String getPhone() {
+		return phone;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getEmail() {
 		return email;
@@ -50,12 +49,6 @@ public class DetailsJson {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public String getAadharID() {
-		return aadharID;
-	}
-	public void setAadharID(String aadharID) {
-		this.aadharID = aadharID;
-	}
 	public String getCity() {
 		return city;
 	}
@@ -69,16 +62,15 @@ public class DetailsJson {
 		this.state = state;
 	}
 	public DetailsJson(String email,String password,String firstName, String lastName, String gender, int age, String aadharID, String city,
-			String state) {
+			String state, String phone) {
 		this.email=email.trim();
-		this.password=password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.gender = gender;
 		this.age = age;
-		this.aadharID = aadharID;
 		this.city = city;
 		this.state = state;
+		this.phone  = phone;
 	}
 	public DetailsJson() {
 		// TODO Auto-generated constructor stub
