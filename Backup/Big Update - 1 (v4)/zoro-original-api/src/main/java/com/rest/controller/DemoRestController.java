@@ -3,6 +3,10 @@ package com.rest.controller;
 
 import java.io.IOException;
 import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.core.MediaType;
+
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.hibernate.cfg.Configuration;
 
@@ -64,7 +69,8 @@ public class DemoRestController {
 	@GetMapping("/checkexistence/{newEmail}")
 	public Existence checkNewEmail(@PathVariable String newEmail) {
 					boolean exist=false;
-					
+
+					System.out.println(newEmail);
 					List<UserPersonalDetails> usersList;
 					 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(UserPersonalDetails.class).buildSessionFactory();
 
@@ -155,7 +161,18 @@ public class DemoRestController {
 		}
 		finally {}
 		
-		
+if(!(usersList.isEmpty())) {
+	
+	try {
+		session.beginTransaction();
+		Object obj=session.createQuery("from UserPersonalDetails u where u.email='"+detailsJson.getEmail()+"'").getSingleResult(); //Write Class Name and Property name in query
+		session.delete(obj);
+		session.getTransaction().commit();
+	}
+	finally {
+		System.out.println("Old Entry Deleted!");
+	}
+}		
 		
 		
 	try {
@@ -183,7 +200,7 @@ public class DemoRestController {
 		dbJsonString=temp.getDetailsJson();		
 		}
 	//commit transaction
-		
+		session.getTransaction().commit();
 		
 		
 	//								JSON STRING TO POJO	
@@ -200,7 +217,7 @@ public class DemoRestController {
 				
 		
 		
-		session.getTransaction().commit();
+		
 	}
 	finally {
 		//close the session factory
@@ -244,12 +261,23 @@ public class DemoRestController {
 	//READING OTP, VERIFYING IT AND DELETING ENTRY FROM UNVERIFIED ENTRIES
 	//===========================================================================================================================================
 	
-	@PostMapping("/verifyotp")
-	public VerificationResponse verifyOtp(@RequestBody ReadOtp otpObject) {
+	@GetMapping("/verifyotp/{recString}")
+	public VerificationResponse verifyOtp(@PathVariable String recString) {
+
+		System.out.println(recString);
 	
+		
+		String words[] = recString.split("--");
+		System.out.println(words[0]);
+		System.out.println(words[1]);
+		
+		String emailStr = words[0];
+		String otpStr = words[1];
+		
+		ReadOtp otpObject = new ReadOtp(emailStr, otpStr);
 		String otpFromDb=null;
 		boolean verified=false;
-		
+	
 		
 		List<UnverifiedEntries> usersList;
 		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(UnverifiedEntries.class).buildSessionFactory();
@@ -285,8 +313,7 @@ public class DemoRestController {
 	VerificationResponse verificationResponse = new VerificationResponse(otpObject.getEmail(),verified);
 	
 	
-	return verificationResponse;
-		
+	return verificationResponse;		
 		
 	}
 	
@@ -367,6 +394,7 @@ public class DemoRestController {
 		
 		String passwordToMatch=null;
 		boolean exist=false;
+		
 		
 		
 		List<Credentials> credentials;

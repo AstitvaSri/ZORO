@@ -31,11 +31,12 @@
         }
 
         function Create(user) {
-            return $http.post('http://5f0ce492.ngrok.io/api/test', user).then(handleSuccess, handleError('Error creating user'));
+            return $http.post('http://localhost:3000/tasks/', user).then(handleSuccess, handleError('Error creating user'));
+
         }
 
         function Update(user) {
-            return $http.put('/api/users/' + user.id, user).then(handleSuccess, handleError('Error updating user'));
+              return $http.post('http://localhost:7070/spring-rest-demo/zoroapi/savedetails', user).then(handleSuccess, handleError('Error Updating user'));
         }
 
         function Delete(id) {

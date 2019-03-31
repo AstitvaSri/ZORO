@@ -53,7 +53,7 @@
             var restrictedPage = $.inArray($location.path(), ['/login','/dashboard' ,'/register','/profile']) === -1;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
-                $location.path('/login');
+                $location.path('/register');
             }
         });
     }

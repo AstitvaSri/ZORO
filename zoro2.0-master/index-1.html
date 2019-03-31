@@ -5,7 +5,8 @@
     <title>ZORO</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
     <link href="app-content/app.css" rel="stylesheet" />
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/icomoon-social.css">
@@ -38,13 +39,33 @@
         <a href="#!/dashboard">Home</a>
       </li>
       <li>
-        <a href="#!/profile">Features</a>
+        <a href="#!/profile">Profile</a>
       </li>
-      <li class="logo-wrapper"><a href="index.html"><img src="img/logo.png" alt="Main logo"></a></li>
+      <li class="logo-wrapper"><a href="#!/login"><img src="img/logo.png" alt="Main logo"></a></li>
 
       <li>
-        <a href="credits.html">Credits</a>
+        <form class="navbar-form content-nav " role="search" action="">
+                <div class="form-group">
+                    <span class="hidden-sm h5 font-w300 text-white" style="text-shadow: 1px 1px 1px rgba(0,0,0,0.6);">I'd like to rent a </span>
+                </div>
+                <div class="form-group" style="border: 0px;">
+                    <input style="border:0px;" type="text" size="20" name="s_keywords" id="s_keywords" class="form-control" placeholder="Cycle..." autocomplete="off" tabindex="1">
+                </div>
+                <div class="form-group">
+                    <span class="hidden-sm h5 font-w300 text-white help-text" style="text-shadow: 1px 1px 1px rgba(0,0,0,0.6);"> near </span>
+                                            </div>
+                <div class="form-group">
+                    <input style="border:0px;" type="text" size="20" name="s_location" id="header_location" class="form-control" placeholder="Alambagh..." autocomplete="off" tabindex="2">
+                    <input type="hidden" id="s_suburb" name="s_suburb" autocomplete="off">
+                    <input type="hidden" id="s_state" name="s_state" autocomplete="off">
+                    <input type="hidden" id="s_postcode" name="s_postcode" autocomplete="off">
+                    <input type="hidden" id="s_lat" name="s_lat" autocomplete="off">
+                    <input type="hidden" id="s_lng" name="s_lng" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-warning" tabindex="2"><i class="fa fa-search"></i><span class="hidden-sm"> Search</span></button>
+              </form>
       </li>
+
     </ul>
   </nav>
 </div>
@@ -95,8 +116,8 @@
           <div class="col-footer col-md-2 col-xs-6">
             <h3>Stay Connected</h3>
             <ul class="footer-stay-connected no-list-style">
-              <li><a href="#" class="facebook"></a></li>
-              <li><a href="#" class="twitter"></a></li>
+              <li><a href="https://www.facebook.com/anuj667" class="facebook"></a></li>
+              <li><a href="https://github.com/Jun03" class="github"></a></li>
               <li><a href="#" class="googleplus"></a></li>
             </ul>
           </div>

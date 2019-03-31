@@ -14,18 +14,18 @@
       <div class="col-sm-5">
         <div class="basic-login">
           <form name="form" ng-submit="vm.register()" role="form" >
-            <div class="form-group" ng-class="{ 'has-error': form.userName.$dirty && form.userName.$error.required }">
-                  <label for="userName"><i class="icon-user"></i> <b>Email</b></label>
-              <input class="form-control" id="register-username" name = "userName" type="text" placeholder="" ng-model="vm.user.userName">
-              <span ng-show="form.userName.$dirty && form.userName.$error.required" class="help-block">This field is required</span>
+            <div class="form-group" ng-class="{ 'has-error': form.email.$dirty && form.userName.$error.required }">
+                  <label for="email"> <b>Email</b></label>
+              <input class="form-control" id="register-email" name = "email" type="email" placeholder="" ng-model="vm.user.email">
+              <span ng-show="form.email.$dirty && form.email.$error.required" class="help-block">This field is required</span>
             </div>
-            <div class="form-group" ng-class=ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
                   <label for="register-password"><i class="icon-lock"></i> <b>Password</b></label>
               <input class="form-control" id="register-password" name = "password" type="password" placeholder="" ng-model="vm.user.password">
               <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
             </div>
 
-            <div class="form-group" ng-class=ng-class="{ 'has-error': form.password.$dirty && form.password.$error.required }">
+            <div class="form-group" ng-class="{ 'has-error': form.confirmPassword.$dirty && form.password.$error.required }">
                   <label for="register-password2"><i class="icon-lock"></i> <b>Re-enter Password</b></label>
               <input class="form-control" id="register-password2" name = "confirmPassword" type="password" placeholder=""  ng-model="vm.user.confirmPassword">
                 <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>

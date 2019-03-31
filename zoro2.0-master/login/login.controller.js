@@ -8,7 +8,8 @@
     LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
     function LoginController($location, AuthenticationService, FlashService) {
         var vm = this;
-
+        //console.log("logiiiiiiiiiin");
+        console.log(vm);
         vm.login = login;
 
         (function initController() {
@@ -19,9 +20,15 @@
         function login() {
             vm.dataLoading = true;
             AuthenticationService.Login(vm.username, vm.password, function (response) {
-                if (response.success) {
+                console.log("DONE");
+                console.log("WE GOT THIS : "+response);
+                var response1=JSON.parse(response);
+                console.log(response1);           
+                if (response1.data.success) {
+                    console.log("SUCCEEDED");                    
+                    console.log(response1.data);
                     AuthenticationService.SetCredentials(vm.username, vm.password);
-                    $location.path('/');
+                    $location.path('/dashboard');     
                 } else {
                     FlashService.Error(response.message);
                     vm.dataLoading = false;

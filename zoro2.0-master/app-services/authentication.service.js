@@ -35,10 +35,12 @@
              Use this for real authentication
              ----------------------------------------------
              *///bro insert your api link here
-            $http.post('http://localhost:7071/spring-rest-demo/zoroapi/login', { email: username, password: password })
-                .success(function (response) {
-                  console.log("register success");
-                    callback(response);
+            $http.post('http://localhost:7070/spring-rest-demo/zoroapi/login', { email: username, password: password })
+                .then(function (response) {
+                  console.log(response);                    
+                    callback(JSON.stringify(response));
+                    console.log(response);                 
+                    console.log("AFTER CALLBACK"); 
                 });
 
         }
@@ -48,7 +50,7 @@
 
             $rootScope.globals = {
                 currentUser: {
-                    username: username,
+                    email: username,
                     authdata: authdata
                 }
             };

@@ -1,24 +1,30 @@
 [
 
   {
-    "title":"Tesla"
-  },
-  {
-    "title":"Tesla-1"
+    "title":"Tesla-Model(S)","rating":"3","location":"Near Station, Charbagh","avail":"2 Months"
+    ,"img":"tesla.jpg","categ":"Automobiles"
 
   },
   {
-    "title":"Tesla-3"
+    "title":"HP-laptop","rating":"3","avail":"2 Months","img":"laptop.jpg", "categ":"Electronics"
+
+  },
+  {
+    "title":"Beautiful-dress","rating":"3","avail":"2 Months","img":"red-dress.png", "categ":"Fashion"
+
   },
     {
-      "title":"Tesla"
-    },
-    {
-      "title":"AIR-1"
+      "title":"Cricket-Kit","rating":"3","avail":"2 Months","img":"cricket.JPG","categ":"Sports"
 
     },
     {
-      "title":"Tesla-3"
+      "title":"Calculator","rating":"3","avail":"2 Months","img":"calculator.JPG","categ":"Electronics"
+
+
+    },
+    {
+      "title":"Sofa-set","rating":"3","avail":"2 Months","img":"sofa-set.jpeg","categ":"Furnitures"
+
     }
 
   ]
