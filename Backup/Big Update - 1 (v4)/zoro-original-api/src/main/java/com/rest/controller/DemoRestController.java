@@ -2,7 +2,10 @@ package com.rest.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.core.MediaType;
@@ -356,10 +359,6 @@ if(!(usersList.isEmpty())) {
 	//save the POJO
 		session.save(saveThisCred);
 	//commit transaction    
-	        
-				
-		
-		
 		session.getTransaction().commit();
 	}
 	finally {
@@ -513,10 +512,150 @@ return responseDetails;
 	//=============================================================================================================================================
 	//===================================================================================================================================================
 	
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//=================================================================================================================================================
+	//=======================================================================================================================================================
+	
+	//----------------------------------- ADD NEW PRODUCT TO DATABASE (CATEGORY)-----------------------------------------------------------------------------
 	
 	
 	
+	@PostMapping("/addnewproduct")
+	public SuccessJSON addProduct(@RequestBody Product newProduct) throws JsonParseException, JsonMappingException, IOException {		
+		
+		
+		System.out.println("Accessing products database...");
+		List<ProductsDB> prodList = null;
+		
+		System.out.println("Starting to read hibernate config...");
+		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(ProductsDB.class).buildSessionFactory();
+		 
+			System.out.println("DONE!");
 	
+	
+	//creating session object to get current session
+		Session session=factory.openSession();
+		
+		
+		try {
+			session.beginTransaction();
+			prodList = session.createQuery("from ProductsDB p where p.pid='"+newProduct.getPid()+"'").getResultList(); //Write Class Name and Property name in query
+		
+			session.getTransaction().commit();
+			
+		}
+		finally {}
+		
+if(!(prodList.isEmpty())) {
+	int oldPid;
+	try {
+		session.beginTransaction();		
+		Object obj=session.createQuery("from ProductsDB p where p.pid='"+newProduct.getPid()+"'").getSingleResult(); //Write Class Name and Property name in query
+		oldPid = newProduct.getPid();
+		session.delete(obj);
+		session.getTransaction().commit();
+	}
+	finally {
+		System.out.println("Old entry is going to be updated...");
+	}
+	
+	//updating old entry with old pid
+	try {
+		//create POJO
+		ProductsDB addThisProduct = new ProductsDB(oldPid,newProduct.getTitle(),newProduct.getRating(), newProduct.getLocation(),newProduct.getAvail(),
+				newProduct.getImg(),newProduct.getCateg(),newProduct.getPrice(),newProduct.getEmail());
+		
+		//start a transaction
+				session.beginTransaction();
+				
+			//save the POJO
+				System.out.println("Saving product details....");
+				
+				session.save(addThisProduct);
+				
+				System.out.println("Saved!");
+			//commit transaction 
+				session.getTransaction().commit();
+		
+		
+	}	
+	
+	
+	finally {
+		System.out.println("Old Entry Updated!");
+	}
+}//if closed here	
+
+
+else {
+	int newpid=-1;
+	
+	//getting next PID
+	try {
+		
+		session.beginTransaction();
+		List<ProductsDB> plist = session.createQuery("from ProductsDB p" ).getResultList(); //Write Class Name and Property name in query
+		int size = plist.size();
+		newpid = plist.get(size-1).getPid();
+		System.out.println("Max pid in DB : "+newpid);
+		session.getTransaction().commit();
+	}
+	finally {
+		newpid = newpid + 1;
+		System.out.println("New pid is : "+newpid);
+		
+	}
+	
+	
+	
+		
+	try {
+		//create POJO
+		ProductsDB addThisProduct = new ProductsDB(newpid,newProduct.getTitle(),newProduct.getRating(), newProduct.getLocation(),newProduct.getAvail(),
+				newProduct.getImg(),newProduct.getCateg(),newProduct.getPrice(),newProduct.getEmail());
+		
+		//start a transaction
+				session.beginTransaction();
+				
+			//save the POJO
+				System.out.println("Saving product details....");
+				
+				session.save(addThisProduct);
+				
+				System.out.println("Saved!");
+			//commit transaction 
+				session.getTransaction().commit();
+		
+		
+	}
+
+ 
+	finally {
+		//close the session factory
+		factory.close();
+	}
+}//else closed here		
+		
+		SuccessJSON success = new SuccessJSON(true);
+		
+		return success;
+	}
 	
 	
 	
@@ -525,9 +664,120 @@ return responseDetails;
 
 	
 	
+	//============================================================================================================================================
 	
+	//--------------------------------------- SEND JSON ARRAY ALL PRODUCTS---------------------------------------------------------------------------------------
+
+	@GetMapping("/allProducts")
+	public List<ProductsDB> sendAllProducts() {
+		
+		List<ProductsDB> prodList;
+		
+		 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(ProductsDB.class).buildSessionFactory();
+
+			System.out.println("Factory created");
+		Session session=factory.openSession();
+		System.out.println("Session Opened");
 	
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	try {
+		session.beginTransaction();
+		prodList=session.createQuery("SELECT a FROM ProductsDB a", ProductsDB.class).getResultList(); //Write Class Name and Property name in query
+		session.getTransaction().commit();
+	}
+	finally {
+		factory.close();
+	}
 	
+	System.out.println("Old Size : "+prodList.size());
+	
+	int rem=0;
+	int size = prodList.size();
+	if(size%3 != 0) {
+		rem = size%3;
+	}
+	
+	if(rem!=0) {
+		List<ProductsDB> toRemove = new ArrayList<ProductsDB>();
+		for(ProductsDB pro: prodList){
+				if(rem==0) {
+					break;
+				}
+				rem--;
+				toRemove.add(pro);
+			}
+		prodList.removeAll(toRemove);
+	}
+	
+	System.out.println("New Size : "+prodList.size());
+	
+return prodList;
+		
+	}	
+	
+	//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	//--------------------------------------- SEND PRODUCTS BASED ON CATEGORY --------------------------------------------------------------------------------------
+
+	@GetMapping("/getCategory/{search_query}")
+	public List<ProductsDB> categoryBasedProducts(@PathVariable String search_query) {
+			
+			List<ProductsDB> prodList;
+			
+			search_query = search_query.toLowerCase();
+			
+			 factory=new Configuration().configure("hibernate.cfg.xml").addAnnotatedClass(ProductsDB.class).buildSessionFactory();
+
+				System.out.println("Factory created");
+			Session session=factory.openSession();
+			System.out.println("Session Opened");
+		
+		try {
+			session.beginTransaction();
+			prodList=session.createQuery("SELECT a FROM ProductsDB a where a.categ = '"+search_query+"'", ProductsDB.class).getResultList(); //Write Class Name and Property name in query
+			session.getTransaction().commit();
+		}
+		finally {
+			factory.close();
+		}
+		
+		System.out.println("Old Size : "+prodList.size());
+		
+		int rem=0;
+		int size = prodList.size();
+		if(size%3 != 0) {
+			rem = size%3;
+		}
+		
+		if(rem!=0) {
+			List<ProductsDB> toRemove = new ArrayList<ProductsDB>();
+			for(ProductsDB pro: prodList){
+					if(rem==0) {
+						break;
+					}
+					rem--;
+					toRemove.add(pro);
+				}
+			prodList.removeAll(toRemove);
+		}
+		
+		System.out.println("New Size : "+prodList.size());
+		
+	return prodList;
+			
+		}	
+		
+//=============================================================================================================================================================================================================================
+		
+		
 }//CLASS ENDS HERE
 
