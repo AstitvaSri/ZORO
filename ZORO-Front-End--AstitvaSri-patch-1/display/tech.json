@@ -1,0 +1,20 @@
+[
+
+  {
+    "title":"Tesla-Model(S)","rating":"3","location":"Near Station, Charbagh","avail":"2 Months"
+    ,"img":"tesla.jpg","categ":"Automobiles"
+
+  },
+  {
+    "title":"HP-laptop","rating":"3","avail":"2 Months","img":"laptop.jpg", "categ":"Electronics"
+
+  },
+  {
+    "title":"Beautiful-dress","rating":"3","avail":"2 Months","img":"red-dress.png", "categ":"Fashion"
+
+  },
+    {
+      "title":"Cricket-Kit","rating":"3","avail":"2 Months","img":"cricket.JPG","categ":"Sports"
+
+    }
+]

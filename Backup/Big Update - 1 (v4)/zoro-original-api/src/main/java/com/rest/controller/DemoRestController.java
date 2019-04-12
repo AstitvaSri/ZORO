@@ -578,8 +578,9 @@ if(!(prodList.isEmpty())) {
 	//updating old entry with old pid
 	try {
 		//create POJO
-		ProductsDB addThisProduct = new ProductsDB(oldPid,newProduct.getTitle(),newProduct.getRating(), newProduct.getLocation(),newProduct.getAvail(),
-				newProduct.getImg(),newProduct.getCateg(),newProduct.getPrice(),newProduct.getEmail());
+		ProductsDB addThisProduct = new ProductsDB(oldPid,newProduct.getTitle(),newProduct.getRating(), newProduct.getLocation(),
+				newProduct.getImg(),newProduct.getCateg(),newProduct.getPrice(),newProduct.getEmail(),newProduct.getDescription(),
+				newProduct.getAvf(),newProduct.getAvu());
 		
 		//start a transaction
 				session.beginTransaction();
@@ -627,8 +628,9 @@ else {
 		
 	try {
 		//create POJO
-		ProductsDB addThisProduct = new ProductsDB(newpid,newProduct.getTitle(),newProduct.getRating(), newProduct.getLocation(),newProduct.getAvail(),
-				newProduct.getImg(),newProduct.getCateg(),newProduct.getPrice(),newProduct.getEmail());
+		ProductsDB addThisProduct = new ProductsDB(newpid,newProduct.getTitle(),newProduct.getRating(), newProduct.getLocation(),
+				newProduct.getImg(),newProduct.getCateg(),newProduct.getPrice(),newProduct.getEmail(),newProduct.getDescription(),newProduct.getAvf(),
+				newProduct.getAvu());
 		
 		//start a transaction
 				session.beginTransaction();
@@ -777,7 +779,6 @@ return prodList;
 		}	
 		
 //=============================================================================================================================================================================================================================
-		
-		
+
 }//CLASS ENDS HERE
 

@@ -5,17 +5,37 @@ public class Product {
 	private String title;
 	private String rating;
 	private String location;
-	private String avail;
-	private String img;//image path
+	private String img;//image code
 	private String categ;
 	private String price;
 	private String email;
+	private String avf;
+	private String avu;
+	private String description;
 	
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public String getAvf() {
+		return avf;
+	}
+	public void setAvf(String avf) {
+		this.avf = avf;
+	}
+	public String getAvu() {
+		return avu;
+	}
+	public void setAvu(String avu) {
+		this.avu = avu;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getPrice() {
 		return price;
@@ -47,12 +67,6 @@ public class Product {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getAvail() {
-		return avail;
-	}
-	public void setAvail(String avail) {
-		this.avail = avail;
-	}
 	public String getImg() {
 		return img;
 	}
@@ -65,17 +79,19 @@ public class Product {
 	public void setCateg(String categ) {
 		this.categ = categ;
 	}
-	public Product(int pid, String title, String rating, String location, String avail, String img, String categ, String price, String email) {
+	public Product(int pid, String title, String rating, String location, String img, String categ, String price, String email, String description, String avf, String avu) {
 		super();
 		this.pid = pid;
 		this.title = title;
 		this.rating = rating;
 		this.location = location;
-		this.avail = avail;
 		this.img = img;
 		this.categ = categ;
 		this.price = price;
 		this.email = email;
+		this.description = description;
+		this.avf = avf;
+		this.avu = avu;
 	}
 	
 	public Product() {

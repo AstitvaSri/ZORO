@@ -1,0 +1,31 @@
+<br>
+<br>
+
+<div class="row">
+  <!-- Image Column -->
+  <div class="col-sm-6">
+    <div class="portfolio-item">
+      <div class="portfolio-image portfolio-image1">
+        <a href="#"><img ng-src="../img/{{item.img}}" alt="image not uploaded"></a>
+      </div>
+    </div>
+  </div>
+  <!-- End Image Column -->
+  <!-- Project Info Column -->
+  <div class="portfolio-item-description col-sm-6">
+    <h3>{{item.title}}</h3>
+    <p>
+{{item.description}}
+    </p>
+    <ul class="no-list-style">
+      <li><b>Provider Email:</b> {{item.email}}</li>
+      <li><b>Availability:</b>{{item.avail}}</li>
+      <li><b>Categories:</b> {{item.categ}}</li>
+      <li><b>Price per day:</b> {{item.price}}</li>
+      <li><b>Location:</b> {{item.location}}</li>
+
+      <li class="portfolio-visit-btn"><a href="mailto:{{item.email}}?Subject=Regarding the {{item.title}} that you have provided on zoro" target="new" class="btn">Contact</a></li>
+    </ul>
+  </div>
+  <!-- End Project Info Column -->
+</div>

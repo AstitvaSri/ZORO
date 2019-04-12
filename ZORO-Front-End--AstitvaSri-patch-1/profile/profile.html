@@ -1,0 +1,113 @@
+<div class="container">
+    <h1>Edit Profile</h1>
+  	<hr>
+	<div class="row">
+      <!-- left column -->
+      <div class="col-md-3">
+      <!--  <div class="text-center">
+          <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
+          <h6>Upload a different photo...</h6>
+
+          <input type="file" class="form-control">
+        -->
+        <div class="avatar-upload">
+        <div class="avatar-edit">
+            <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+            <label for="imageUpload"></label>
+        </div>
+        <div class="avatar-preview">
+            <div id="imagePreview" style="background-image: url(../img/default-avatar.png);">
+            </div>
+        </div>
+    </div>
+
+
+      </div>
+
+
+
+      <!-- edit form column -->
+      <div class="col-md-9 personal-info">
+      <!--  <div class="alert alert-info alert-dismissable">
+          <a class="panel-close close" data-dismiss="alert">×</a>
+          <i class="fa fa-coffee"></i>
+          This is an <strong>.alert</strong>. Use this to show important messages to the user.
+        </div>
+      --><h3>Personal info</h3>
+
+        <form class="form-horizontal" role="form" name="form" ng-submit="vm.editProfile()">
+          <div class="form-group" ng-class="{ 'has-error': form.userName.$dirty && form.firstName.$error.required }">
+            <label class="col-lg-3 control-label">First name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" name="firstName" type="text" ng-model="vm.user.firstName">
+            </div>
+          </div>
+          <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+            <label class="col-lg-3 control-label">Last name:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" name="lastName" ng-model="vm.user.lastName">
+            </div>
+          </div>
+          <div class="form-group">
+                <label class="col-lg-3 control-label">Gender:</label>
+                <div class="col-lg-8">
+                  <div class="ui-select">
+                    <select id="user_time_zone" class="form-control" name="gender" ng-model="vm.user.gender">
+                      <option value=""></option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': form.age.$dirty && form.age.$error.required }">
+                <label class="col-md-3 control-label">age:</label>
+                <div class="col-md-8">
+                  <input class="form-control" name="age" type="number" ng-model="vm.user.age" >
+                </div>
+              </div>
+
+          <div class="form-group" ng-class="{ 'has-error': form.city.$dirty && form.city.$error.required }">
+            <label class="col-md-3 control-label">City:</label>
+            <div class="col-md-8">
+              <input class="form-control" ng-model="vm.user.city" name="city" type="text-area" >
+            </div>
+          </div>
+
+          <div class="form-group" ng-class="{ 'has-error': form.state.$dirty && form.state.$error.required }">
+            <label class="col-md-3 control-label">State:</label>
+            <div class="col-md-8">
+              <input class="form-control" ng-model="vm.user.state" name="state" type="text-area" >
+            </div>
+          </div>
+
+
+          <div class="form-group" ng-class="{ 'has-error': form.phone.$dirty && form.phone.$error.required }">
+            <label class="col-md-3 control-label">Phone:</label>
+            <div class="col-md-8">
+              <input class="form-control" type="number" name ="phone" ng-model="vm.user.phone">
+            </div>
+          </div>
+
+
+                <h2>
+                  Upload Verification document
+                </h2>
+                <br><input type="file" id="pdf-upload"/>
+          <hr/>
+          <canvas></canvas>
+
+          <div class="form-group">
+            <label class="col-md-3 control-label"></label>
+            <div class="col-md-8">
+              <input type="submit" class="btn btn-primary fsubmit" ng-disabled="form.$invalid" value="Save Changes">
+              <span></span>
+              <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+</div>
+<hr>

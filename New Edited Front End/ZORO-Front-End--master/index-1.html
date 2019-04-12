@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>ZORO</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <link href="app-content/app.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/icomoon-social.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,800' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/leaflet.css" />
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/leaflet.ie.css" />
+<![endif]-->
+<link rel="stylesheet" href="css/main.css">
+
+
+
+</head>
+<body>
+
+  <div class="mainmenu-wrapper">
+    <div class="container">
+    <!--	<div class="menuextras">
+    <div class="extras">
+      <ul>
+        <li class="shopping-cart-items"><i class="glyphicon glyphicon-shopping-cart icon-white"></i> <a href="page-shopping-cart.html"><b>3 items</b></a></li>
+            <li><a href="page-login.html">Login</a></li>
+          </ul>
+    </div>
+      </div>-->
+      <nav id="mainmenu" class="mainmenu">
+    <ul>
+      <li>
+        <a href="#!/dashboard">Home</a>
+      </li>
+      <li>
+        <a href="#!/profile">Profile</a>
+      </li>
+      <li class="logo-wrapper"><a href="#!/login"><img src="img/logo.png" alt="Main logo"></a></li>
+
+
+      <li>
+        <a href="#!/categories">Categories</a>
+      </li>
+      <li>
+        <a href="#!/post">Post an AD</a>
+      </li>
+
+
+<!--
+      <li>
+        <form class="navbar-form content-nav " role="search" action="">
+                <div class="form-group">
+                    <span class="hidden-sm h5 font-w300 text-white" style="text-shadow: 1px 1px 1px rgba(0,0,0,0.6);">I'd like to rent a </span>
+                </div>
+                <div class="form-group" style="border: 0px;">
+                    <input style="border:0px;" type="text" size="20" name="s_keywords" id="s_keywords" class="form-control" placeholder="Cycle..." autocomplete="off" tabindex="1">
+                </div>
+                <div class="form-group">
+                    <span class="hidden-sm h5 font-w300 text-white help-text" style="text-shadow: 1px 1px 1px rgba(0,0,0,0.6);"> near </span>
+                                            </div>
+                <div class="form-group">
+                    <input style="border:0px;" type="text" size="20" name="s_location" id="header_location" class="form-control" placeholder="Alambagh..." autocomplete="off" tabindex="2">
+                    <input type="hidden" id="s_suburb" name="s_suburb" autocomplete="off">
+                    <input type="hidden" id="s_state" name="s_state" autocomplete="off">
+                    <input type="hidden" id="s_postcode" name="s_postcode" autocomplete="off">
+                    <input type="hidden" id="s_lat" name="s_lat" autocomplete="off">
+                    <input type="hidden" id="s_lng" name="s_lng" autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-warning" tabindex="2"><i class="fa fa-search"></i><span class="hidden-sm"> Search</span></button>
+              </form>
+      </li>
+-->
+    </ul>
+  </nav>
+</div>
+</div>
+
+
+
+
+
+  <div ng-view class="container" id="main-container">
+
+  </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-footer col-md-3 col-xs-6">
+            <h3>Our Latest Work</h3>
+            <div class="portfolio-item">
+            <div class="portfolio-image">
+              <a href="page-portfolio-item.html"><img src="img/zoro-logo.png" alt="Project Name"></a>
+            </div>
+          </div>
+          </div>
+      <!--    <div class="col-footer col-md-3 col-xs-6">
+            <h3>Navigate</h3>
+            <ul class="no-list-style footer-navigate-section">
+              <li><a href="page-blog-posts.html">Blog</a></li>
+              <li><a href="page-portfolio-3-columns-2.html">Portfolio</a></li>
+              <li><a href="page-products-3-columns.html">eShop</a></li>
+              <li><a href="page-services-3-columns.html">Services</a></li>
+              <li><a href="page-pricing.html">Pricing</a></li>
+              <li><a href="page-faq.html">FAQ</a></li>
+            </ul>
+          </div>
+        -->
+          <div class="col-footer col-md-4 col-xs-6">
+            <h3>Contacts</h3>
+            <p class="contact-us-details">
+                <b>Address:</b> 123 Fake Street, LN1 2ST, London, United Kingdom<br/>
+                <b>Phone:</b> +44 123 654321<br/>
+                <b>Fax:</b> +44 123 654321<br/>
+                <b>Email:</b> <a href="mailto:getintoutch@yourcompanydomain.com">getintoutch@yourcompanydomain.com</a>
+              </p>
+          </div>
+          <div class="col-footer col-md-2 col-xs-6">
+            <h3>Stay Connected</h3>
+            <ul class="footer-stay-connected no-list-style">
+              <li><a href="https://www.facebook.com/anuj667" class="facebook">facebook</a></li>
+              <li><a href="https://github.com/Jun03" class="github">Github</a></li>
+              <li><a href="#" class="googleplus"></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="footer-copyright">&copy; 2018 Anuj - Astitva. All rights reserved.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <script src="js/jquery-3.3.0.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/angular-cookies.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/pdf.js/1.8.349/pdf.min.js"></script>
+
+    <script src="app.js"></script>
+    <script src="app-services/authentication.service.js"></script>
+    <script src="app-services/flash.service.js"></script>
+
+    <!-- Fake user service for demo that uses local storage -->
+    <!-- <script src="app-services/user.service.local-storage.js"></script> -->
+
+    <!-- Real user service that uses an api -->
+    <script src="app-services/user.service.js"></script>
+    <script src="home/home.controller.js"></script>
+    <script src="login/login.controller.js"></script>
+    <script src="dashboard/dashboardController.js"></script>
+    <script src="display/displayController.js"></script>
+    <script src="post/postController.js"></script>
+    <script src="register/register.controller.js"></script>
+    <script src="profile/profileController.js"></script>
+    <script src="categories/categController.js"></script>
+
+</body>
+</html>

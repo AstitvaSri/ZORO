@@ -1,0 +1,147 @@
+<!--<div ng-repeat="item in items track by $index" ng-if="$index%3==0">
+  <div>{{items[$index].name}}</div>
+  <div>{{items[$index+1].name}}</div>
+  <div>{{items[$index+2].name}}</div>
+</div>
+-->
+<div class="sidenav">
+  <h1>Featured-Categories</h1>
+  <a href="#about">Technology</a>
+    <a href="#services">Sportings and Goods</a>
+    <a href="#about">Baby & Children</a>
+      <a href="#services">Home</a>
+      <a href="#about">Fashion</a>
+        <a href="#services">Services</a>
+
+        <h1>Support</h1>
+        <a href="#services">Terms & conditions</a>
+        <a href="#about">Privacy policy</a>
+          <a href="#services">Help</a>
+
+        <h1>Become a patron</h1>
+</div>
+
+<div class="main" id="element-container">
+<div ng-repeat="item in items track by $index" ng-if="$index%3==0" class="row">
+
+  <div class="col-sm-4" >
+    <!-- Product -->
+    <div class="shop-item">
+      <!-- Product Image -->
+      <div class="image">
+        <a href="page-product-details.html"><img ng-src="../img/{{items[$index].img}}" alt="Item Name"></a>
+      </div>
+      <!-- Product Title -->
+      <div class="title">
+        <h3><a href="page-product-details.html">{{items[$index].title}}</a></h3>
+      </div>
+      <!-- Product Available Colors
+      <div class="colors">
+        <span class="color-white"></span>
+        <span class="color-black"></span>
+        <span class="color-blue"></span>
+        <span class="color-orange"></span>
+        <span class="color-green"></span>
+      </div>
+       Product Price-->
+      <div class="price">
+      ₹1999
+      </div>
+      <!-- Product Description-->
+      <div class="description">
+        <p>Lorem ipsum dolor sit amet, dui est laoreet risus, ac rhoncus eros diam id odio.</p>
+      </div>
+      <div class="item-details">
+        <ul>
+          <li class="item-loc"> Location ->   {{items[$index].location}} </li>
+          <li class="item-rat"> Rating  ->  {{items[$index].rating}} </li>
+        <li class="item-avail"> Availability ->   {{items[$index].avail}} </li>
+        <li class="item-categ"> Category->    {{items[$index].categ}} </li>
+
+        </ul>
+      </div>
+      <!-- Add to Cart Button -->
+      <div class="actions">
+        <a href="page-product-details.html" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+      </div>
+    </div>
+    <!-- End Product -->
+  </div>
+
+
+
+<div class="col-sm-4" >
+  <!-- Product -->
+  <div class="shop-item">
+    <!-- Product Image -->
+    <div class="image">
+      <a href="page-product-details.html"><img ng-src="../img/{{items[$index+1].img}}" alt="Item Name"></a>
+    </div>
+    <!-- Product Title -->
+    <div class="title">
+      <h3><a href="page-product-details.html">{{items[$index+1].title}}</a></h3>
+    </div>
+
+    <!-- Product Price-->
+    <div class="price">
+        ₹939
+    </div>
+    <!-- Product Description-->
+    <div class="description">
+      <p>Lorem ipsum dolor sit amet, dui est laoreet risus, .</p>
+    </div>
+    <div class="item-details">
+      <ul>
+        <li class="item-loc"> Location->    {{items[$index+1].location}} </li>
+        <li class="item-rat"> Rating   -> {{items[$index+1].rating}} </li>
+      <li class="item-avail"> Availability ->   {{items[$index+1].avail}} </li>
+    <li class="item-categ"> Category ->   {{items[$index+1].categ}} </li>
+      </ul></div>
+    <!-- Add to Cart Button -->
+    <div class="actions">
+      <a href="page-product-details.html" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+    </div>
+  </div>
+  <!-- End Product -->
+</div>
+
+
+<div class="col-sm-4" >
+  <!-- Product -->
+  <div class="shop-item">
+    <!-- Product Image -->
+    <div class="image">
+      <a href="page-product-details.html"><img ng-src="../img/{{items[$index+2].img}}" alt="Item Name"></a>
+    </div>
+    <!-- Product Title -->
+    <div class="title">
+      <h3><a href="page-product-details.html">{{items[$index+2].title}}</a></h3>
+    </div>
+
+    <!-- Product Price-->
+    <div class="price">
+     ₹1029
+    </div>
+    <!-- Product Description-->
+    <div class="description">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse mattis,.</p>
+    </div>
+    <div class="item-details">
+      <ul>
+        <li class="item-loc"> Location ->   {{items[$index+2].location}} </li>
+        <li class="item-rat"> Rating  ->  {{items[$index+2].rating}} </li>
+      <li class="item-avail"> Availability  ->  {{items[$index+2].avail}} </li>
+      <li class="item-categ"> Category ->   {{items[$index+2].categ}} </li>
+    </ul></div>
+    <!-- Add to Cart Button -->
+    <div class="actions">
+      <a href="page-product-details.html" class="btn"><i class="icon-shopping-cart icon-white"></i> Add to Cart</a>
+    </div>
+  </div>
+  <!-- End Product -->
+</div>
+
+</div>
+
+
+</div>

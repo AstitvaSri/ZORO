@@ -23,10 +23,8 @@ public class ProductsDB {
 	@Column(name="location")
 	private String location;
 	
-	@Column(name="avail")
-	private String avail;
-	
-	@Column(name="imgPath")
+		
+	@Column(name="imgCode")
 	private String img;
 	
 	@Column(name="categ")
@@ -37,6 +35,16 @@ public class ProductsDB {
 	
 	@Column(name="owner")
 	private String email;
+	
+	@Column(name="description")
+	private String description;
+	
+	@Column(name="avf")
+	private String avf;
+	
+	@Column(name="avu")
+	private String avu;
+	
 	
 	public String getEmail() {
 		return email;
@@ -74,12 +82,6 @@ public class ProductsDB {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getAvail() {
-		return avail;
-	}
-	public void setAvail(String avail) {
-		this.avail = avail;
-	}
 	public String getImg() {
 		return img;
 	}
@@ -92,29 +94,44 @@ public class ProductsDB {
 	public void setCateg(String categ) {
 		this.categ = categ;
 	}
+		
 	
 	
-	public ProductsDB(int pid,String title, String rating, String location, String avail, String img, String categ, String price, String email) {
+	public ProductsDB(int pid, String title, String rating, String location, String img, String categ, String price,
+			String email, String description, String avf, String avu) {
 		super();
 		this.pid = pid;
 		this.title = title;
 		this.rating = rating;
 		this.location = location;
-		this.avail = avail;
 		this.img = img;
 		this.categ = categ;
 		this.price = price;
 		this.email = email;
+		this.description = description;
+		this.avf = avf;
+		this.avu = avu;
 	}
-	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getAvf() {
+		return avf;
+	}
+	public void setAvf(String avf) {
+		this.avf = avf;
+	}
+	public String getAvu() {
+		return avu;
+	}
+	public void setAvu(String avu) {
+		this.avu = avu;
+	}
 	public ProductsDB() {
 		//default constructor
-	}
-	@Override
-	public String toString() {
-		return "ProductsDB [pid=" + pid + ", title=" + title + ", rating=" + rating + ", location=" + location
-				+ ", avail=" + avail + ", img=" + img + ", categ=" + categ + ", price=" + price + ", email=" + email
-				+ "]";
 	}
 	
 	

@@ -10,7 +10,7 @@
   //    console.log(categ);
       if(categ=='none')
 {
-      $http.get('/dashboard/ad_data.json').then(function(response) {
+      $http.get('http://localhost:7070/spring-rest-demo/zoroapi/allProducts').then(function(response) {
         //console.log("heya");
       console.log(response);
         $scope.items = response.data; //console.log(response);
@@ -18,7 +18,7 @@
       });
     }
       else{
-        $http.get('/dashboard/'+categ+'.json').then(function(response) {
+        $http.get('http://localhost:7070/spring-rest-demo/zoroapi/getCategory/'+categ+'/').then(function(response) {
           //console.log("heya");
         console.log(response);
           $scope.items = response.data; //console.log(response);
